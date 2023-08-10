@@ -27,4 +27,14 @@ public class EmployeeService {
     public Optional<Employee> get(Long id) {
         return repository.findById(id);
     }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
+    public Employee update(EmployeeDTO dto, Long id){
+        var model = EmployeeMapper.fromDTOToModel(dto);
+        model.setId(id);
+        return repository.save(model);
+    }
 }
